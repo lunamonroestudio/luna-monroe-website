@@ -40,9 +40,8 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    if (!response.ok) {
-      return res.status(502).json({ error: "AI provider request failed" });
-    }
+   if (!response.ok) {
+}console.error("OpenRouter error:", response.status, JSON.stringify(data)); return res.status(502).json({ error: "AI provider request failed", providerStatus: response.status });
 
     return res.status(200).json({
       reply: data.choices?.[0]?.message?.content || "Sorry, darling. Shall we try that again? 💕"
